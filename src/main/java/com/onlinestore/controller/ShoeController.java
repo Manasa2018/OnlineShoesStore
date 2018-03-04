@@ -1,6 +1,7 @@
 package com.onlinestore.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,10 +30,15 @@ public class ShoeController {
 		return shoeRepository.findAll();
 	}
 	
-//	@GetMapping("/shoes/{id}")
-//	public Shoes getShoe(@PathVariable Long id){
-//		return shoeRepository.findById(id);
-//	}
+	@GetMapping("/shoes/{id}")
+	public Shoes getShoe(@PathVariable Long id) {
+		Shoes selectedShoe = null;
+		Optional<Shoes> shoe = shoeRepository.findById(id);
+		if (shoe.isPresent()) {
+			selectedShoe = shoe.get();
+		}
+		return selectedShoe;
+	}
 	
 	@DeleteMapping("/shoes/{id}")
 	public boolean deleteShoes(@PathVariable Long id){

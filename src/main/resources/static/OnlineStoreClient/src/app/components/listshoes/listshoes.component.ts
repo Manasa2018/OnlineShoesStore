@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import {ShoesService} from '../../shared-service/shoes.service';
 import {Shoes} from '../../shoes';
 import {Router} from '@angular/router';
@@ -9,7 +9,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./listshoes.component.css']
 })
 export class ListshoesComponent implements OnInit {
-  private shoes:Shoes[];
+private shoes:Shoes[];
+@Output()
+private errorMessage;
 
   constructor(private _shoesService:ShoesService, private _router:Router) { }
 
@@ -19,6 +21,7 @@ export class ListshoesComponent implements OnInit {
       this.shoes=shoes;
     },(error)=>{
       console.log(error);
+      this.errorMessage='Problem while loading page, please try again later.';
     })
   }
 
@@ -27,6 +30,7 @@ export class ListshoesComponent implements OnInit {
     this.shoes.splice(this.shoes.indexOf(shoes),1);
   },(error)=>{
     console.log(error);
+    this.errorMessage='Problem while loading page, please try again later.';
     });
   }
 
