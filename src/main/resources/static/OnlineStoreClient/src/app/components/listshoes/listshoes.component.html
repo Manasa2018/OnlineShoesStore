@@ -1,0 +1,25 @@
+<div class="container">
+  <table class="table table-striped">
+    <thead><h1><font color="blue">Online Shoe Store</font></h1></thead>
+    <thead>
+      <th>Id</th>
+      <th>Brand</th>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Price</th>
+      <th>Operations</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let shoes of shoes">
+        <td>{{shoes.id}}</td>
+        <td>{{shoes.shoeBrand}}</td>
+        <td>{{shoes.shoeName}}</td>
+        <td>{{shoes.size}}</td>
+        <td>{{shoes.price}}</td>
+        <td><button class="btn btn-danger" (click)="deleteShoes(shoes)">Delete</button>
+            <button class="btn btn-primary" (click)="updateShoes(shoes)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+    <button class="btn btn-primary" (click)="addShoes()">Add New Shoes</button>
+</div>
